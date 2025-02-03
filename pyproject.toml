@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "purl-tools"
+version = "0.1.0"
+description = "A small library that supports with various tasks around Package URLs"
+authors = ["Max Mehl <max.mehl@deutschebahn.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{ include = "purltools" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+packageurl-python = "^0.16.0"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.3.4"
+mypy = "^1.14.1"
+isort = "^6.0.0"
+pytest = "^8.3.4"
+types-requests = "^2.32.0.20241016"
+bump-my-version = "^0.32.0"
+
+[tool.poetry.scripts]
+purl-tools = "purltools.main:_cli"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# FORMATTING settings
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 100
+
+# MYPY settings
+[tool.mypy]
+files = ["purltools/*.py"]
+disable_error_code = ["import-untyped"]
+
+# Bump-My-Version
+[tool.bumpversion]
+commit = true
+tag = true
+allow_dirty = false
+tag_name = "v{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+regex = true
+search = "^version = \"{current_version}\""
+replace = "version = \"{new_version}\""
