@@ -6,6 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # purl-tools - Helpful PackageURL functions
 
+![OpenRail Administrative Project](https://openrailassociation.org/badges/openrail-project-admin.svg)
 [![Test suites](https://github.com/OpenRailAssociation/purl-tools/actions/workflows/test.yaml/badge.svg)](https://github.com/OpenRailAssociation/purl-tools/actions/workflows/test.yaml)
 [![REUSE status](https://api.reuse.software/badge/github.com/OpenRailAssociation/purl-tools)](https://api.reuse.software/info/github.com/OpenRailAssociation/purl-tools)
 [![The latest version of Compliance Assistant can be found on PyPI.](https://img.shields.io/pypi/v/purl-tools.svg)](https://pypi.org/project/purl-tools/)
