@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Test url2purl and purl2url"""
 
 from purltools import convert_purl2url, convert_url2purl
@@ -9,6 +13,7 @@ def test_purl2url():
     expected_url = "https://packagist.org/packages/symfony/polyfill-mbstring#v1.11.0"
 
     assert convert_purl2url(purl) == expected_url
+
 
 def test_url2purl():
     """Test url2purl conversion"""
