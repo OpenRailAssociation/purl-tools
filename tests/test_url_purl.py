@@ -10,6 +10,7 @@ def test_purl2url():
 
     assert convert_purl2url(purl) == expected_url
 
+
 def test_url2purl():
     """Test url2purl conversion"""
     url = "http://pypi.org/project/github-org-manager/0.5.6/"

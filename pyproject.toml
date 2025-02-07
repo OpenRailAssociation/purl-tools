@@ -19,6 +19,7 @@ isort = "^6.0.0"
 pytest = "^8.3.4"
 types-requests = "^2.32.0.20241016"
 bump-my-version = "^0.32.0"
+black = "^25.1.0"
 
 [tool.poetry.scripts]
 purl-tools = "purltools.main:_cli"
@@ -36,7 +37,7 @@ line-length = 100
 
 # MYPY settings
 [tool.mypy]
-files = ["purltools/*.py"]
+files = ["purltools/*.py", "tests/*.py"]
 disable_error_code = ["import-untyped"]
 
 # Bump-My-Version

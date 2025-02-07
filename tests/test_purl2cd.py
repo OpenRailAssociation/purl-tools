@@ -90,7 +90,7 @@ def test_purl2cd_github_tag():
     """GitHub PURLs using a tag"""
     purl = "pkg:github/openrailassociation/github-org-manager@v0.5.7"
     expected_coordinates = (
-        "git/github/openrailassociation/github-org-manager/d61ee9a40e258ead9fa44642bfad49307498c343"
+        "git/github/openrailassociation/github-org-manager/1004ad1ac52465b97602a93d25d3ea1713d4b5d8"
     )
 
     assert purl2clearlydefined(purl) == expected_coordinates
