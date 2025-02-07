@@ -6,9 +6,17 @@
 name = "purl-tools"
 version = "0.1.0"
 description = "A small library that supports with various tasks around Package URLs"
+repository = "https://github.com/OpenRailAssociation/purl-tools"
 authors = ["Max Mehl <max.mehl@deutschebahn.com>"]
 license = "Apache-2.0"
 readme = "README.md"
+keywords = ["compliance", "clearlydefined", "purl"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "License :: OSI Approved :: Apache Software License",
+  "Topic :: Software Development",
+]
 packages = [{ include = "purltools" }]
 
 [tool.poetry.dependencies]
