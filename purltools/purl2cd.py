@@ -27,7 +27,7 @@ def purl2clearlydefined(purl: str) -> str | None:
 
     Raises:
         ValueError: If the provided purl is not valid, cannot be parsed by the
-        PackageURL module, or of the package type is not supported.
+        PackageURL module, or if the package type is not supported.
     """
     try:
         p = PackageURL.from_string(purl)

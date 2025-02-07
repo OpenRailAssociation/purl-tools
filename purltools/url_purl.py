@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-"""Convert between PackageURL and URL. Taken more or less unmodifed from
+"""Convert between PackageURL and URL. Taken more or less unmodified from
 packageurl."""
 
 from packageurl.contrib import purl2url, url2purl
