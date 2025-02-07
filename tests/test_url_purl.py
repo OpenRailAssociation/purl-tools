@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Test url2purl and purl2url"""
 
 from purltools import convert_purl2url, convert_url2purl
