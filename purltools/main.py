@@ -54,9 +54,17 @@ parser_meta = subparsers.add_parser(
     help="Get metadata for a package by its PURL",
     parents=[common_flags],
 )
-parser_meta.add_argument("purl", help="The PURL to look up")
 parser_meta.add_argument(
-    "info", help="The information to look up", choices=["latest", "repository"]
+    "purl", help="The PURL to look up. Note: The version provided in the purl has no effect."
+)
+parser_meta.add_argument(
+    "info",
+    help=(
+        "The information to look up. 'latest' return the latest default version, typically the "
+        "newest non-pre-release. 'repository' returns the source repository of the latest "
+        "available version."
+    ),
+    choices=["latest", "repository"],
 )
 
 
