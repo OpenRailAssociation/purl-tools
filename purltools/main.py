@@ -8,6 +8,7 @@ import argparse
 import logging
 
 from . import __version__
+from .meta import get_metadata
 from .purl2cd import purl2clearlydefined
 from .url_purl import convert_purl2url, convert_url2purl
 
@@ -47,6 +48,25 @@ parser_purl2url = subparsers.add_parser(
 )
 parser_purl2url.add_argument("purl", help="The PURL to convert")
 
+# meta
+parser_meta = subparsers.add_parser(
+    "meta",
+    help="Get metadata for a package by its PURL",
+    parents=[common_flags],
+)
+parser_meta.add_argument(
+    "purl", help="The PURL to look up. Note: The version provided in the purl has no effect."
+)
+parser_meta.add_argument(
+    "info",
+    help=(
+        "The information to look up. 'latest' return the latest default version, typically the "
+        "newest non-pre-release. 'repository' returns the source repository of the latest "
+        "available version."
+    ),
+    choices=["latest", "repository"],
+)
+
 
 def configure_logger(verbose: bool = False) -> logging.Logger:
     """Set logging options"""
@@ -75,6 +95,8 @@ def _cli():
         print(convert_url2purl(args.url))
     elif args.command == "purl2url":
         print(convert_purl2url(args.purl))
+    elif args.command == "meta":
+        print(get_metadata(args.purl, args.info))
 
 
 if __name__ == "__main__":

@@ -17,6 +17,7 @@ This library serves as a helper for various tasks around Package URL (purl).
 ## Features
 
 * Convert a PURL to [ClearlyDefined](https://clearlydefined.io) coordinates
+* Find certain metadata about a PURL for some types, e.g. latest available version and source code URL
 * Convert a PURL to a URL (using [packageurl-python](https://github.com/package-url/packageurl-python))
 * Convert a URL to a PURL (using [packageurl-python](https://github.com/package-url/packageurl-python))
 
