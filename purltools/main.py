@@ -8,8 +8,8 @@ import argparse
 import logging
 
 from . import __version__
+from .meta import get_metadata
 from .purl2cd import purl2clearlydefined
-from .repo_api import get_metadata
 from .url_purl import convert_purl2url, convert_url2purl
 
 # Main parser with root-level flags
