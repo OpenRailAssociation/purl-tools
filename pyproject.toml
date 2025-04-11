@@ -30,7 +30,7 @@ mypy = "^1.14.1"
 isort = "^6.0.0"
 pytest = "^8.3.4"
 types-requests = "^2.32.0.20241016"
-bump-my-version = "^0.33.0"
+bump-my-version = "^1.0.0"
 black = "^25.1.0"
 
 [tool.poetry.scripts]
