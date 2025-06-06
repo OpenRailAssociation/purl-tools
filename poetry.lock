@@ -526,14 +526,14 @@ files = [
 
 [[package]]
 name = "packageurl-python"
-version = "0.16.0"
+version = "0.17.1"
 description = "A purl aka. Package URL parser and builder"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "packageurl_python-0.16.0-py3-none-any.whl", hash = "sha256:5c3872638b177b0f1cf01c3673017b7b27ebee485693ae12a8bed70fa7fa7c35"},
-    {file = "packageurl_python-0.16.0.tar.gz", hash = "sha256:69e3bf8a3932fe9c2400f56aaeb9f86911ecee2f9398dbe1b58ec34340be365d"},
+    {file = "packageurl_python-0.17.1-py3-none-any.whl", hash = "sha256:59b0862ae0b216994f847e05b4c6e870e0d16e1ddd706feefb19d79810f22cbd"},
+    {file = "packageurl_python-0.17.1.tar.gz", hash = "sha256:5db592a990b60bc02446033c50fb1803a26c5124cd72c5a2cd1b8ea1ae741969"},
 ]
 
 [package.extras]
@@ -1091,4 +1091,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "aafc1dbb09ab8f38bb40a7d23a9f055cc53b11bb9b4857afedf108051afa05cb"
+content-hash = "a5fd36541c8c812fa1fda1b95585c9bf16a2a5b749fe3d9c2261ad7e90069afb"
