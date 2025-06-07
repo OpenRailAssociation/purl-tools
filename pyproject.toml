@@ -21,7 +21,7 @@ packages = [{ include = "purltools" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-packageurl-python = "^0.16.0"
+packageurl-python = "^0.17.0"
 requests = "^2.31.0"
 
 [tool.poetry.group.dev.dependencies]
