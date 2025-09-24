@@ -21,17 +21,17 @@ packages = [{ include = "purltools" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-packageurl-python = "^0.17.0"
-requests = "^2.31.0"
+packageurl-python = "^0.17.5"
+requests = "^2.32.5"
 
 [tool.poetry.group.dev.dependencies]
-pylint = "^3.3.4"
-mypy = "^1.14.1"
-isort = "^6.0.0"
-pytest = "^8.3.4"
-types-requests = "^2.32.0.20241016"
-bump-my-version = "^1.1.2"
-black = "^25.1.0"
+pylint = "^3.3.8"
+mypy = "^1.18.2"
+isort = "^6.0.1"
+pytest = "^8.4.2"
+types-requests = "^2.32.4.20250913"
+bump-my-version = "^1.2.3"
+black = "^25.9.0"
 
 [tool.poetry.scripts]
 purl-tools = "purltools.main:_cli"
