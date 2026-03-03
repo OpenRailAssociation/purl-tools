@@ -27,7 +27,7 @@ requests = "^2.32.5"
 [tool.poetry.group.dev.dependencies]
 pylint = "^4.0.0"
 mypy = "^1.18.2"
-isort = "^7.0.0"
+isort = "^8.0.0"
 pytest = "^9.0.0"
 types-requests = "^2.32.4.20250913"
 bump-my-version = "^1.2.3"
