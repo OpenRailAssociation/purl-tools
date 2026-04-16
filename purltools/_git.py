@@ -2,12 +2,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-"""GitHub API helper functions"""
+"""GitHub API helper functions."""
 
 import logging
 import os
+from http import HTTPStatus
 
 import requests
+
+_SHA1_LENGTH = 40
 
 
 def is_sha1(sha: str) -> bool:
@@ -19,17 +22,18 @@ def is_sha1(sha: str) -> bool:
     Returns:
         bool: True if the string is a valid SHA1 hash, False otherwise.
     """
-    return len(sha) == 40 and all(c in "0123456789abcdef" for c in sha.lower())
+    return len(sha) == _SHA1_LENGTH and all(c in "0123456789abcdef" for c in sha.lower())
 
 
 def _get_github_tag_info(owner: str, repo: str, tag: str, headers: dict) -> dict:
     """
     Get information about a GitHub tag using GitHub's REST API.
+
     Args:
         owner (str): Repository owner
         repo (str): Repository name
         tag (str): Tag name/reference
-        headers (dict): Headers to include in the API request
+        headers (dict): Headers to include in the API request.
 
     Returns:
         dict: The JSON response from the GitHub API
@@ -72,13 +76,19 @@ def github_tag_to_commit(owner: str, repo: str, tag: str) -> str:
     # GitHub actions and cdxgen
     except requests.exceptions.RequestException as e:
         status_code = getattr(e.response, "status_code", None)
-        if status_code == 404 and not tag.startswith("v"):
+        if status_code == HTTPStatus.NOT_FOUND and not tag.startswith("v"):
             logging.debug("Tag %s not found, retrying with 'v' prefix", tag)
             try:
                 data = _get_github_tag_info(owner, repo, f"v{tag}", headers)
             except requests.exceptions.RequestException:
-                if getattr(e.response, "status_code", None) == 404:
-                    logging.error("Tag %s (or v%s) not found in repo %s/%s", tag, tag, owner, repo)
+                if getattr(e.response, "status_code", None) == HTTPStatus.NOT_FOUND:
+                    logging.exception(
+                        "Tag %s (or v%s) not found in repo %s/%s",
+                        tag,
+                        tag,
+                        owner,
+                        repo,
+                    )
                     return tag
                 raise e from e
         else:
@@ -98,16 +108,18 @@ def github_tag_to_commit(owner: str, repo: str, tag: str) -> str:
 
 
 def validate_tag_url(url: str) -> None:
-    """Validate a GitHub API URL to prevent server-side request forgery"""
+    """Validate a GitHub API URL to prevent server-side request forgery."""
     if not url.startswith("https://api.github.com"):
-        raise ValueError(f"Invalid GitHub API URL '{url}")
-    if not is_sha1(url.split("/")[-1]):
-        raise ValueError(f"Invalid SHA1 hash in URL '{url}'")
+        msg = f"Invalid GitHub API URL '{url}"
+        raise ValueError(msg)
+    if not is_sha1(url.rsplit("/", maxsplit=1)[-1]):
+        msg = f"Invalid SHA1 hash in URL '{url}'"
+        raise ValueError(msg)
 
 
 def get_github_token() -> str | None:
-    """Get GitHub token from environment variable if available"""
-    if "GITHUB_TOKEN" in os.environ and os.environ["GITHUB_TOKEN"]:
+    """Get GitHub token from environment variable if available."""
+    if os.environ.get("GITHUB_TOKEN"):
         logging.debug("GitHub token found in environment")
         return str(os.environ["GITHUB_TOKEN"])
     logging.debug("No GitHub token found, proceeding unauthenticated")

@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-"""Main functions of purl-tools"""
+"""Main functions of purl-tools."""
 
 import argparse
 import logging
@@ -69,10 +69,9 @@ parser_meta.add_argument(
 
 
 def configure_logger(verbose: bool = False) -> logging.Logger:
-    """Set logging options"""
+    """Set logging options."""
     log = logging.getLogger()
     logging.basicConfig(
-        encoding="utf-8",
         format="[%(asctime)s] %(levelname)s: %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     )
@@ -84,7 +83,7 @@ def configure_logger(verbose: bool = False) -> logging.Logger:
     return log
 
 
-def _cli():
+def _cli() -> None:
     """Main function for CLI."""
     args = parser.parse_args()
     configure_logger(args.verbose)

@@ -2,10 +2,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-"""purl2clearlydefined and connected functions"""
+"""purl2clearlydefined and connected functions."""
 
 import logging
 import sys
+from collections.abc import Callable
 
 from packageurl import PackageURL
 
@@ -32,7 +33,8 @@ def purl2clearlydefined(purl: str) -> str | None:
     try:
         p = PackageURL.from_string(purl)
     except ValueError as e:
-        raise ValueError(f"Failed to parse purl: {e}") from e
+        msg = f"Failed to parse purl: {e}"
+        raise ValueError(msg) from e
 
     coordinates = initialize_coordinates(p)
 
@@ -42,8 +44,9 @@ def purl2clearlydefined(purl: str) -> str | None:
     if type_handler:
         coordinates = type_handler(p, coordinates)
     else:
+        msg = f"Unsupported package type: {p.type}"
         raise ValueError(
-            f"Unsupported package type: {p.type}",
+            msg,
         )
 
     return build_coordinate_string(coordinates)
@@ -68,11 +71,11 @@ def initialize_coordinates(p: PackageURL) -> dict:
         "provider": "",
         "namespace": "-" if not p.namespace else p.namespace,
         "name": p.name,
-        "revision": p.version if p.version else "",
+        "revision": p.version or "",
     }
 
 
-def handle_unexpected_qualifiers_and_version(p: PackageURL):
+def handle_unexpected_qualifiers_and_version(p: PackageURL) -> None:
     """Handle some edge cases with missing or None PURL qualifiers or version.
 
     Args:
@@ -88,7 +91,7 @@ def handle_unexpected_qualifiers_and_version(p: PackageURL):
         sys.exit(1)
 
 
-def get_type_handler(package_type: str):
+def get_type_handler(package_type: str) -> Callable[[PackageURL, dict], dict] | None:
     """Depending on the package type, define the function handling this package origin.
 
     Args:
@@ -116,7 +119,7 @@ def get_type_handler(package_type: str):
     return handlers.get(package_type)
 
 
-def handle_cocoapods(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-argument
+def handle_cocoapods(_p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Cocoapods PURLs.
 
     Args:
@@ -133,7 +136,7 @@ def handle_cocoapods(p: PackageURL, coordinates) -> dict:  # pylint: disable=unu
     return coordinates
 
 
-def handle_cargo(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-argument
+def handle_cargo(_p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Cargo PURLs.
 
     Args:
@@ -150,7 +153,7 @@ def handle_cargo(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-
     return coordinates
 
 
-def handle_composer(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-argument
+def handle_composer(_p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Composer PURLs.
 
     Args:
@@ -167,7 +170,7 @@ def handle_composer(p: PackageURL, coordinates) -> dict:  # pylint: disable=unus
     return coordinates
 
 
-def handle_conda(p: PackageURL, coordinates) -> dict:
+def handle_conda(p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Conda PURLs.
 
     Args:
@@ -188,7 +191,7 @@ def handle_conda(p: PackageURL, coordinates) -> dict:
     coordinates["type"] = "conda"
     qualifiers = p.qualifiers or {}
 
-    channel = qualifiers.get("channel")  # type: ignore
+    channel = qualifiers.get("channel")  # type: ignore[union-attr]
     if channel == "main":
         coordinates["provider"] = "anaconda-main"
     elif channel == "conda-forge":
@@ -199,20 +202,20 @@ def handle_conda(p: PackageURL, coordinates) -> dict:
         logging.error("Unsupported conda channel: %s", channel)
         coordinates["provider"] = "UNSUPPORTED_CHANNEL"
 
-    subdir = qualifiers.get("subdir")  # type: ignore
+    subdir = qualifiers.get("subdir")  # type: ignore[union-attr]
     if not subdir:
         logging.error("Missing subdir for conda package")
         coordinates["namespace"] = "MISSING_SUBDIR"
     coordinates["namespace"] = subdir
 
-    build = qualifiers.get("build")  # type: ignore
+    build = qualifiers.get("build")  # type: ignore[union-attr]
     if build:
         coordinates["revision"] = f"{p.version}-{build}"
 
     return coordinates
 
 
-def handle_deb(p: PackageURL, coordinates) -> dict:
+def handle_deb(p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Debian PURLs.
 
     Args:
@@ -227,11 +230,11 @@ def handle_deb(p: PackageURL, coordinates) -> dict:
             - revision: For binary packages, combines version with architecture
     """
     qualifiers = p.qualifiers or {}
-    arch = qualifiers.get("arch")  # type: ignore
+    arch = qualifiers.get("arch")  # type: ignore[union-attr]
 
     if arch == "source":
         coordinates["type"] = "debsrc"
-        coordinates["revision"] = p.version if p.version else ""
+        coordinates["revision"] = p.version or ""
     else:
         coordinates["type"] = "deb"
         coordinates["revision"] = f"{p.version}_{arch}" if arch else p.version
@@ -241,7 +244,7 @@ def handle_deb(p: PackageURL, coordinates) -> dict:
     return coordinates
 
 
-def handle_gem(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-argument
+def handle_gem(_p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Ruby Gems PURLs.
 
     Args:
@@ -258,7 +261,7 @@ def handle_gem(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-ar
     return coordinates
 
 
-def handle_git(p: PackageURL, coordinates) -> dict:
+def handle_git(p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Git repository PURLs.
 
     Args:
@@ -273,14 +276,16 @@ def handle_git(p: PackageURL, coordinates) -> dict:
     coordinates["type"] = "git"
     coordinates["provider"] = p.type
     # If the version does not look like a SHA1, it is a tag
-    if not is_sha1(p.version):  # type: ignore
+    if p.version and not is_sha1(p.version):
         coordinates["revision"] = github_tag_to_commit(
-            p.namespace, p.name, p.version  # type: ignore
+            p.namespace or "",
+            p.name,
+            p.version,
         )
     return coordinates
 
 
-def handle_golang(p: PackageURL, coordinates) -> dict:
+def handle_golang(p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Golang PURLs.
 
     Args:
@@ -301,7 +306,7 @@ def handle_golang(p: PackageURL, coordinates) -> dict:
     return coordinates
 
 
-def handle_maven(p: PackageURL, coordinates) -> dict:
+def handle_maven(p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for Maven PURLs.
 
     Args:
@@ -325,7 +330,7 @@ def handle_maven(p: PackageURL, coordinates) -> dict:
     return coordinates
 
 
-def handle_npm(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-argument
+def handle_npm(_p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for NPM PURLs.
 
     Args:
@@ -342,7 +347,7 @@ def handle_npm(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-ar
     return coordinates
 
 
-def handle_nuget(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-argument
+def handle_nuget(_p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for NuGet PURLs.
 
     Args:
@@ -359,7 +364,7 @@ def handle_nuget(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-
     return coordinates
 
 
-def handle_pypi(p: PackageURL, coordinates) -> dict:  # pylint: disable=unused-argument
+def handle_pypi(_p: PackageURL, coordinates: dict) -> dict:
     """Set type and provider for PyPI PURLs.
 
     Args:

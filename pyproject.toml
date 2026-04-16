@@ -2,60 +2,94 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-[tool.poetry]
+[project]
 name = "purl-tools"
 version = "0.2.4"
 description = "A small library that supports with various tasks around Package URLs"
-repository = "https://github.com/OpenRailAssociation/purl-tools"
-authors = ["Max Mehl <max.mehl@deutschebahn.com>"]
-license = "Apache-2.0"
+authors = [{ name = "Max Mehl", email = "max.mehl@deutschebahn.com" }]
+requires-python = ">=3.10,<4"
 readme = "README.md"
-keywords = ["compliance", "clearlydefined", "purl"]
-classifiers = [
-  "Development Status :: 5 - Production/Stable",
-  "Environment :: Console",
-  "License :: OSI Approved :: Apache Software License",
-  "Topic :: Software Development",
+license = "Apache-2.0"
+keywords = [
+    "compliance",
+    "clearlydefined",
+    "purl",
 ]
-packages = [{ include = "purltools" }]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Topic :: Software Development",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "packageurl-python>=0.17.5,<0.18",
+    "requests>=2.32.5,<3",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-packageurl-python = "^0.17.5"
-requests = "^2.32.5"
+[project.urls]
+Repository = "https://github.com/OpenRailAssociation/purl-tools"
 
-[tool.poetry.group.dev.dependencies]
-pylint = "^4.0.0"
-mypy = "^1.18.2"
-isort = "^8.0.0"
-pytest = "^9.0.0"
-types-requests = "^2.32.4.20250913"
-bump-my-version = "^1.2.3"
-black = "^26.0.0"
-
-[tool.poetry.scripts]
+[project.scripts]
 purl-tools = "purltools.main:_cli"
 
+[dependency-groups]
+dev = [
+    "ruff>=0.15.10",
+    "ty>=0.0.29",
+    "bump-my-version>=1.2.3,<2",
+    "pytest>=9.0.0,<10",
+]
+
+[tool.uv]
+default-groups = "all"
+
+[tool.uv.build-backend]
+module-name = ["purltools"]
+module-root = ""
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "purltools"]
+
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.11.6,<0.12.0"]
+build-backend = "uv_build"
 
-# FORMATTING settings
-[tool.isort]
-profile = "black"
-
-[tool.black]
+# FORMATTING and LINTING settings
+[tool.ruff]
 line-length = 100
 
-# MYPY settings
-[tool.mypy]
-files = ["purltools/*.py", "tests/*.py"]
-disable_error_code = ["import-untyped"]
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "T",
+    "FBT",
+    "LOG015",
+    "COM812",
+    "ERA001",
+    "S310",
+    "D205",
+    "D212",
+    "PTH123",
+]
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/*" = ["S101", "PLR", "PT011", "ANN001"]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+# TY settings
+[tool.ty.src]
+include = ["purltools"]
 
 # Bump-My-Version
 [tool.bumpversion]
 commit = true
 tag = true
+sign_tags = true
 allow_dirty = false
 tag_name = "v{new_version}"
 
@@ -64,3 +98,16 @@ filename = "pyproject.toml"
 regex = true
 search = "^version = \"{current_version}\""
 replace = "version = \"{new_version}\""
+
+[[tool.bumpversion.files]]
+filename = "uv.lock"
+search = """
+[[package]]
+name = "purl-tools"
+version = "{current_version}"
+"""
+replace = """
+[[package]]
+name = "purl-tools"
+version = "{new_version}"
+"""
