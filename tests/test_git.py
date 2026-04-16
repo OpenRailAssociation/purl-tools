@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-"""Test _git.py module functions"""
+"""Test _git.py module functions."""
 
 from unittest.mock import Mock, patch
 
@@ -12,12 +12,12 @@ from purltools._git import github_tag_to_commit
 
 
 class TestGitHubTagToCommit:
-    """Test cases for github_tag_to_commit function"""
+    """Test cases for github_tag_to_commit function."""
 
     @patch("purltools._git.requests.get")
     @patch("purltools._git.get_github_token")
-    def test_github_purl_tag_not_found_retry_success(self, mock_token, mock_get):
-        """Test pkg:github/actions/checkout@5 scenario - tag '5' not found, 'v5' found"""
+    def test_github_purl_tag_not_found_retry_success(self, mock_token, mock_get) -> None:
+        """Test pkg:github/actions/checkout@5 scenario - tag '5' not found, 'v5' found."""
         mock_token.return_value = None
 
         # First call for tag '5' fails with 404
@@ -42,8 +42,8 @@ class TestGitHubTagToCommit:
 
     @patch("purltools._git.requests.get")
     @patch("purltools._git.get_github_token")
-    def test_github_purl_tag_not_found_retry_also_fails(self, mock_token, mock_get):
-        """Test pkg:github/actions/checkout@5 scenario - both '5' and 'v5' not found"""
+    def test_github_purl_tag_not_found_retry_also_fails(self, mock_token, mock_get) -> None:
+        """Test pkg:github/actions/checkout@5 scenario - both '5' and 'v5' not found."""
         mock_token.return_value = None
 
         # Both calls fail with 404

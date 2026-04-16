@@ -3,7 +3,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 """Functions to query package repository APIs in order to get package metadata like versions and
-code URLs"""
+code URLs.
+"""
 
 import logging
 from urllib.parse import quote
@@ -19,18 +20,18 @@ def _handle_none_namespace(namespace: str | None) -> str:
     return namespace
 
 
-def _api_query(url):
+def _api_query(url: str) -> dict:
     """Make a generic GET request with some error handling. Returns the JSON response."""
     response = requests.get(url, timeout=5)
     response.raise_for_status()
     return response.json()
 
 
-def query_depsdev_for_metadata(system: str, namespace: str | None, name: str, info: str):
+def query_depsdev_for_metadata(system: str, namespace: str | None, name: str, info: str) -> str:
     """Query the deps.dev API in two steps:
     1. Get latest version: https://api.deps.dev/v3/systems/:repo/packages/:name
     2. Get metadata for this version:
-       https://api.deps.dev/v3/systems/:repo/packages/:name/versions/:latest
+       https://api.deps.dev/v3/systems/:repo/packages/:name/versions/:latest.
     """
     namespace = _handle_none_namespace(namespace)
     if system == "maven":
@@ -42,9 +43,9 @@ def query_depsdev_for_metadata(system: str, namespace: str | None, name: str, in
     url = f"https://api.deps.dev/v3/systems/{system}/packages/{package}"
     data: dict = _api_query(url)
 
-    latest_version = [
+    latest_version = next(
         version["versionKey"]["version"] for version in data["versions"] if version["isDefault"]
-    ][0]
+    )
 
     if info == "latest":
         return latest_version
@@ -57,7 +58,8 @@ def query_depsdev_for_metadata(system: str, namespace: str | None, name: str, in
         # Return source URL after removing potential git+ prefix and .git suffix (e.g. in npm)
         return source_url.removeprefix("git+").removesuffix(".git")
 
-    raise ValueError("Invalid info type")
+    msg = "Invalid info type"
+    raise ValueError(msg)
 
 
 def get_metadata_packagist(namespace: str | None, name: str, info: str) -> str:
@@ -84,7 +86,8 @@ def get_metadata_packagist(namespace: str | None, name: str, info: str) -> str:
     if info == "repository":
         return data_pkg.get("source", {}).get("url", "").replace(".git", "")
 
-    raise ValueError("Invalid info type")
+    msg = "Invalid info type"
+    raise ValueError(msg)
 
 
 def get_metadata(purl: str, info: str) -> str:
@@ -93,18 +96,17 @@ def get_metadata(purl: str, info: str) -> str:
         p = PackageURL.from_string(purl)
         logging.debug("Deconstructed Package URL: %s", repr(p))
     except ValueError as e:
-        raise ValueError(f"Failed to parse purl: {e}") from e
+        msg = f"Failed to parse purl: {e}"
+        raise ValueError(msg) from e
 
     if info not in ["latest", "repository"]:
-        raise ValueError("Invalid info type")
+        msg = "Invalid info type"
+        raise ValueError(msg)
 
     # For many package types, we use the deps.dev API to simplify maintenance
     if p.type in ("npm", "pypi", "cargo", "maven", "golang", "nuget"):
         # "golang" in PURL is "go" in deps.dev
-        if p.type == "golang":
-            repo_system = "go"
-        else:
-            repo_system = p.type
+        repo_system = "go" if p.type == "golang" else p.type
 
         return query_depsdev_for_metadata(
             system=repo_system, namespace=p.namespace, name=p.name, info=info
@@ -113,4 +115,5 @@ def get_metadata(purl: str, info: str) -> str:
     if p.type == "composer":
         return get_metadata_packagist(namespace=p.namespace, name=p.name, info=info)
 
-    raise ValueError(f"Unsupported package type: {p.type}")
+    msg = f"Unsupported package type: {p.type}"
+    raise ValueError(msg)
