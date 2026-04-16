@@ -323,7 +323,7 @@ wheels = [
 
 [[package]]
 name = "purl-tools"
-version = "0.2.4"
+version = "0.2.5"
 source = { editable = "." }
 dependencies = [
     { name = "packageurl-python" },
