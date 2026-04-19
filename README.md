@@ -61,7 +61,7 @@ pipx upgrade purl-tools
 
 ### Other installation methods
 
-You may also use pure `pip` or `poetry` to install this package.
+You may also use pure `pip` or `uv` to install this package.
 
 
 ## CLI Usage
@@ -75,8 +75,8 @@ Depending on your exact installation method, this may be one of
 pipx run purl-tools
 # Installation via pipx or pip
 purl-tools
-# Run via poetry
-poetry run purl-tools
+# Run via uv
+uv run purl-tools
 ```
 
 In the following, we will just use `purl-tools`.
