@@ -2,8 +2,5 @@
 // SPDX-FileCopyrightText: 2025 OpenRail Association AISBL
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "github>OpenRailAssociation/renovate-config",
-    "helpers:pinGitHubActionDigestsToSemver" // Pin GitHub Action versions to specific digests
-  ],
+  "extends": ["github>OpenRailAssociation/renovate-config"],
 }
