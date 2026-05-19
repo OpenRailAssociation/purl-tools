@@ -4,7 +4,7 @@
 
 [project]
 name = "purl-tools"
-version = "0.2.6"
+version = "0.2.7"
 description = "A small library that supports with various tasks around Package URLs"
 authors = [{ name = "Max Mehl", email = "max.mehl@deutschebahn.com" }]
 requires-python = ">=3.10,<4"
