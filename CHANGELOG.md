@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.8](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.7...v0.2.8) (2026-06-08)
+
+
+### ⚙️ Chores
+
+* **deps:** lock file maintenance ([#117](https://github.com/OpenRailAssociation/purl-tools/issues/117)) ([b4d81d5](https://github.com/OpenRailAssociation/purl-tools/commit/b4d81d5a4ee627ed7f64098e8a28cbb59ce6061d))
+* **deps:** update github actions group ([#115](https://github.com/OpenRailAssociation/purl-tools/issues/115)) ([a3474f2](https://github.com/OpenRailAssociation/purl-tools/commit/a3474f28255cc41a9c1acfbb606524e2a500b82d))
+
 ## [0.2.7](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.6...v0.2.7) (2026-05-19)
 
 
