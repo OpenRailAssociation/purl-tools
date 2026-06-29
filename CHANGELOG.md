@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.9](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.8...v0.2.9) (2026-06-29)
+
+
+### ⚙️ Chores
+
+* **deps:** lock file maintenance ([#118](https://github.com/OpenRailAssociation/purl-tools/issues/118)) ([a2580d0](https://github.com/OpenRailAssociation/purl-tools/commit/a2580d0ea2d990c1ce39b91a8c33dbff998d4dae))
+* **deps:** lock file maintenance ([#121](https://github.com/OpenRailAssociation/purl-tools/issues/121)) ([ca8667c](https://github.com/OpenRailAssociation/purl-tools/commit/ca8667c8fb91a76dd9770bc8bec83180d4065464))
+* **deps:** lock file maintenance ([#124](https://github.com/OpenRailAssociation/purl-tools/issues/124)) ([7d2cf27](https://github.com/OpenRailAssociation/purl-tools/commit/7d2cf271790aca211d86dea6ec54d00b8cd1d02b))
+* **deps:** update actions/setup-python action to v6.3.0 ([#123](https://github.com/OpenRailAssociation/purl-tools/issues/123)) ([61e38fa](https://github.com/OpenRailAssociation/purl-tools/commit/61e38fa271e19c15da56cb2fdcfa99ce562f0dd0))
+* **deps:** update github actions group ([#122](https://github.com/OpenRailAssociation/purl-tools/issues/122)) ([8781ada](https://github.com/OpenRailAssociation/purl-tools/commit/8781adad5461fbc3b4d5cb247f81e2644586435c))
+* **deps:** update github actions group (major) ([#120](https://github.com/OpenRailAssociation/purl-tools/issues/120)) ([e5a3243](https://github.com/OpenRailAssociation/purl-tools/commit/e5a324380dc5adba767124f53368e53411f2c393))
+
 ## [0.2.8](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.7...v0.2.8) (2026-06-08)
 
 
