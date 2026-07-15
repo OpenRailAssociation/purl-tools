@@ -10,6 +10,7 @@ authors = [{ name = "Max Mehl", email = "max.mehl@deutschebahn.com" }]
 requires-python = ">=3.10,<4"
 readme = "README.md"
 license = "Apache-2.0"
+license-files = ["LICENSE", "LICENSES/*"]
 keywords = [
     "compliance",
     "clearlydefined",
@@ -33,6 +34,7 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/OpenRailAssociation/purl-tools"
+Changelog = "https://github.com/OpenRailAssociation/purl-tools/blob/main/CHANGELOG.md"
 
 [project.scripts]
 purl-tools = "purltools.main:_cli"
