@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.10](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.9...v0.2.10) (2026-10-16)
+
+
+### ⚙️ Chores
+
+* **deps:** lock file maintenance ([#159](https://github.com/OpenRailAssociation/purl-tools/issues/159)) ([f67c9f6](https://github.com/OpenRailAssociation/purl-tools/commit/f67c9f6bc8f078581b82eeb81c30296cd10aa755))
+* **deps:** update actions/create-github-app-token action to v3.3.0 ([#164](https://github.com/OpenRailAssociation/purl-tools/issues/164)) ([06d60f4](https://github.com/OpenRailAssociation/purl-tools/commit/06d60f45a7675a6de46662216dbe609ffe3cb85c))
+* **deps:** update astral-sh/setup-uv action to v10.3.0 ([#161](https://github.com/OpenRailAssociation/purl-tools/issues/161)) ([46189d4](https://github.com/OpenRailAssociation/purl-tools/commit/46189d4d98340482a4dd527897f64152a9252f2e))
+* **deps:** update dependency python to 3.15 ([#163](https://github.com/OpenRailAssociation/purl-tools/issues/163)) ([ac1321a](https://github.com/OpenRailAssociation/purl-tools/commit/ac1321a1346aa01b5a96de7df2f4bdbaa12f5901))
+* **deps:** update dependency uv_build to &gt;=0.13.0,&lt;0.14.0 ([#162](https://github.com/OpenRailAssociation/purl-tools/issues/162)) ([dd64163](https://github.com/OpenRailAssociation/purl-tools/commit/dd64163f69e5db80bda6de83586ee7b76d3d9b56))
+
 ## [0.2.9](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.8...v0.2.9) (2026-10-05)
 
 
