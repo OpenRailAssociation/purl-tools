@@ -242,7 +242,7 @@ wheels = [
 
 [[package]]
 name = "purl-tools"
-version = "0.2.9"
+version = "0.2.10"
 source = { editable = "." }
 default-groups = "all"
 dependencies = [
