@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.2.10](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.9...v0.2.10) (2026-10-26)
+
+
+### ⚙️ Chores
+
+* **deps:** lock file maintenance ([#159](https://github.com/OpenRailAssociation/purl-tools/issues/159)) ([f67c9f6](https://github.com/OpenRailAssociation/purl-tools/commit/f67c9f6bc8f078581b82eeb81c30296cd10aa755))
+* **deps:** lock file maintenance ([#167](https://github.com/OpenRailAssociation/purl-tools/issues/167)) ([c2916be](https://github.com/OpenRailAssociation/purl-tools/commit/c2916be05a19c0a6b851b742cdd424ca90759188))
+* **deps:** lock file maintenance ([#171](https://github.com/OpenRailAssociation/purl-tools/issues/171)) ([769d636](https://github.com/OpenRailAssociation/purl-tools/commit/769d6365ace2babf76229de22b723a25ec770492))
+* **deps:** update actions/create-github-app-token action to v3.3.0 ([#164](https://github.com/OpenRailAssociation/purl-tools/issues/164)) ([06d60f4](https://github.com/OpenRailAssociation/purl-tools/commit/06d60f45a7675a6de46662216dbe609ffe3cb85c))
+* **deps:** update astral-sh/setup-uv action to v10.3.0 ([#161](https://github.com/OpenRailAssociation/purl-tools/issues/161)) ([46189d4](https://github.com/OpenRailAssociation/purl-tools/commit/46189d4d98340482a4dd527897f64152a9252f2e))
+* **deps:** update astral-sh/setup-uv action to v10.3.2 ([#170](https://github.com/OpenRailAssociation/purl-tools/issues/170)) ([dad351d](https://github.com/OpenRailAssociation/purl-tools/commit/dad351d07dc029878854e16e804f46d5eb236ac7))
+* **deps:** update dependency python to 3.15 ([#163](https://github.com/OpenRailAssociation/purl-tools/issues/163)) ([ac1321a](https://github.com/OpenRailAssociation/purl-tools/commit/ac1321a1346aa01b5a96de7df2f4bdbaa12f5901))
+* **deps:** update dependency uv_build to &gt;=0.13.0,&lt;0.14.0 ([#162](https://github.com/OpenRailAssociation/purl-tools/issues/162)) ([dd64163](https://github.com/OpenRailAssociation/purl-tools/commit/dd64163f69e5db80bda6de83586ee7b76d3d9b56))
+* **deps:** update github actions group ([#169](https://github.com/OpenRailAssociation/purl-tools/issues/169)) ([1975bdc](https://github.com/OpenRailAssociation/purl-tools/commit/1975bdcfa7635523aaa3adcb6cf1f6bb76f018a6))
+* **deps:** update pypa/gh-action-pypi-publish action to v1.14.3 ([#168](https://github.com/OpenRailAssociation/purl-tools/issues/168)) ([ac3d943](https://github.com/OpenRailAssociation/purl-tools/commit/ac3d94341fd639b683a52a8808e2a7416ee4bcc7))
+* **deps:** update zizmorcore/zizmor-action action to v0.7.0 ([#165](https://github.com/OpenRailAssociation/purl-tools/issues/165)) ([2db2881](https://github.com/OpenRailAssociation/purl-tools/commit/2db28815717717657bb7051e88d60b11554cfded))
+* **deps:** update zizmorcore/zizmor-action action to v0.7.1 ([#166](https://github.com/OpenRailAssociation/purl-tools/issues/166)) ([4221452](https://github.com/OpenRailAssociation/purl-tools/commit/42214527bb7601b03b6ff9ca3f1eab2f064eb46e))
+* **deps:** update zizmorcore/zizmor-action action to v0.8.0 ([#172](https://github.com/OpenRailAssociation/purl-tools/issues/172)) ([38f27e1](https://github.com/OpenRailAssociation/purl-tools/commit/38f27e1156b2a5762a73114650750b458049ff86))
+
 ## [0.2.9](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.8...v0.2.9) (2026-10-05)
 
 
