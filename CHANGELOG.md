@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.11](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.10...v0.2.11) (2026-11-06)
+
+
+### ⚙️ Chores
+
+* **deps:** lock file maintenance ([#175](https://github.com/OpenRailAssociation/purl-tools/issues/175)) ([29db16c](https://github.com/OpenRailAssociation/purl-tools/commit/29db16c666a5abeb81bc9a23062f75f392d88d16))
+* **deps:** update astral-sh/setup-uv action to v10.3.3 ([#173](https://github.com/OpenRailAssociation/purl-tools/issues/173)) ([f7738dc](https://github.com/OpenRailAssociation/purl-tools/commit/f7738dcf0372b2302054773728a1a9f82e873265))
+* **deps:** update zizmorcore/zizmor-action action to v0.8.1 ([#176](https://github.com/OpenRailAssociation/purl-tools/issues/176)) ([ee7e72b](https://github.com/OpenRailAssociation/purl-tools/commit/ee7e72b6cd48f7164a6cd35b0c6237295163d479))
+
 ## [0.2.10](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.9...v0.2.10) (2026-10-26)
 
 
