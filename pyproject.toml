@@ -7,7 +7,7 @@ name = "purl-tools"
 version = "0.2.10"
 description = "A small library that supports with various tasks around Package URLs"
 authors = [{ name = "Max Mehl", email = "max.mehl@deutschebahn.com" }]
-requires-python = ">=3.10,<4"
+requires-python = ">=3.11,<4"
 readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE", "LICENSES/*"]
@@ -21,11 +21,11 @@ classifiers = [
     "Environment :: Console",
     "Topic :: Software Development",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
 dependencies = [
     "packageurl-python>=0.17.5,<0.18",
