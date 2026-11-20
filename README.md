@@ -23,7 +23,7 @@ This library serves as a helper for various tasks around Package URL (purl).
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.11+
 - Internet connection for accessing the GitHub API, if a human-readable tag is requested
 
 ## Installation
