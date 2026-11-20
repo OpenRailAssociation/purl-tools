@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.0](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.10...v0.3.0) (2026-11-20)
+
+
+### 🚀 New Features
+
+* drop support for Python 3.10, add Python 3.15 ([#178](https://github.com/OpenRailAssociation/purl-tools/issues/178)) ([65dc784](https://github.com/OpenRailAssociation/purl-tools/commit/65dc784929a6ab47bcf0ecbb9c4adccfea7f6a74))
+
+
+### ⚙️ Chores
+
+* **deps:** lock file maintenance ([#175](https://github.com/OpenRailAssociation/purl-tools/issues/175)) ([29db16c](https://github.com/OpenRailAssociation/purl-tools/commit/29db16c666a5abeb81bc9a23062f75f392d88d16))
+* **deps:** lock file maintenance ([#177](https://github.com/OpenRailAssociation/purl-tools/issues/177)) ([3c1929c](https://github.com/OpenRailAssociation/purl-tools/commit/3c1929ceb66e03ca17a612430b46a85808c8d319))
+* **deps:** update astral-sh/setup-uv action to v10.3.3 ([#173](https://github.com/OpenRailAssociation/purl-tools/issues/173)) ([f7738dc](https://github.com/OpenRailAssociation/purl-tools/commit/f7738dcf0372b2302054773728a1a9f82e873265))
+* **deps:** update zizmorcore/zizmor-action action to v0.8.1 ([#176](https://github.com/OpenRailAssociation/purl-tools/issues/176)) ([ee7e72b](https://github.com/OpenRailAssociation/purl-tools/commit/ee7e72b6cd48f7164a6cd35b0c6237295163d479))
+
 ## [0.2.10](https://github.com/OpenRailAssociation/purl-tools/compare/v0.2.9...v0.2.10) (2026-10-26)
 
 
